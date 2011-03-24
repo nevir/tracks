@@ -12,6 +12,7 @@ relative_apply 'helpers/versioning.rb'
 relative_apply 'features/dm-rails.rb' # MUST be first, since it overwrites the Gemfile
 relative_apply 'features/slim.rb'
 relative_apply 'features/compass.rb'
+relative_apply 'features/barista.rb'
 relative_apply 'features/devise.rb'
 relative_apply 'features/cancan.rb'
 relative_apply 'features/welcome.rb'
