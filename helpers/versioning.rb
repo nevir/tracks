@@ -5,7 +5,7 @@ class << self
   # 
   # The user can also specify the version via the command line by specifying the gem name as an
   # option, followed by the version number or a git source url.
-  def versioned_gem(name)
+  def versioned_gem(name, options={})
     opts = Thor::Options.parse({:opt => Thor::Option.new(name, nil, nil, :string)}, ARGV)
     version = (opts.include? name) ? opts[name] : latest_version(name)
     
@@ -14,7 +14,7 @@ class << self
       gem name, :git => version
     # or regular
     else
-      gem name, "~> #{version}"
+      gem name, "~> #{version}", options
     end
   end
   
