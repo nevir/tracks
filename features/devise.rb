@@ -9,10 +9,12 @@ after_bundle do
   uncomment_line 'config/application.rb', "require 'action_mailer/railtie'"
   
   # And related settings
-  inject_into_file 'config/environments/development.rb', :before => /\nend/ do
-    "\n\n" +
-    "  # The base URL to use when constructing links back to your application\n" +
-    "  config.action_mailer.default_url_options = { :host => 'localhost:3000' }"
+  inject_into_file 'config/environments/development.rb', :before => /\nend\n/ do
+<<INJECT
+
+  # The base URL to use when constructing links back to your application
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+INJECT
   end
   uncomment_line 'config/initializers/devise.rb', 'config.mailer = "Devise::Mailer"'
 end
