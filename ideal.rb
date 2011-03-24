@@ -1,14 +1,17 @@
-# Make sure that we can load relative paths
-source_paths << File.dirname(__FILE__)
+class << self
+  def relative_apply(path)
+    apply File.join(File.dirname(__FILE__), path)
+  end
+end
 
-apply 'helpers/hooks.rb'
-apply 'helpers/lines.rb'
-apply 'helpers/versioning.rb'
+relative_apply 'helpers/hooks.rb'
+relative_apply 'helpers/lines.rb'
+relative_apply 'helpers/versioning.rb'
 
 # The actual features
-apply 'features/dm-rails.rb'
-apply 'features/devise.rb'
-apply 'features/welcome.rb'
+relative_apply 'features/dm-rails.rb'
+relative_apply 'features/devise.rb'
+relative_apply 'features/welcome.rb'
 
 # Final tasks
 run 'bundle install'
