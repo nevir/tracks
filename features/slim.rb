@@ -5,7 +5,7 @@ after_bundle do
   remove_file 'app/views/layouts/application.html.erb'
   
   create_file 'app/views/layouts/application.html.slim' do
-<<LAYOUT
+<<FILE_END
 doctype html
 html
   head
@@ -15,6 +15,15 @@ html
     = csrf_meta_tag
   body
     = yield
-LAYOUT
+FILE_END
   end
+  
+  inject_into_file 'config/environments/development.rb', :before => /\nend\n/ do
+<<INJECT_END
+
+  # Have slim spit out pretty html for easier debugging
+  Slim::Engine.set_default_options :pretty => true, :tabsize => 2
+INJECT_END
+  end
+  
 end

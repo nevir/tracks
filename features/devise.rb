@@ -10,11 +10,11 @@ after_bundle do
   
   # And related settings
   inject_into_file 'config/environments/development.rb', :before => /\nend\n/ do
-<<INJECT
+<<INJECT_END
 
   # The base URL to use when constructing links back to your application
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-INJECT
+INJECT_END
   end
   uncomment_line 'config/initializers/devise.rb', 'config.mailer = "Devise::Mailer"'
 end
