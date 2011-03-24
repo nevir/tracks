@@ -10,9 +10,8 @@ class << self
     version = (opts.include? name) ? opts[name] : latest_version(name)
     
     # git?
-    if version[/.+:\/\/.+/] then
+    if version =~ /.+:\/\/.+/
       gem name, :git => version
-    
     # or regular
     else
       gem name, "~> #{version}"
